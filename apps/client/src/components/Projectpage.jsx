@@ -6,36 +6,44 @@ import "bootstrap/dist/css/bootstrap.css";
 import ProjectTodos from './Projectitem';
 import InputTodo from './InputTodo';
 import EditProject from './EditProject';
+import { useNavigate } from 'react-router-dom';
+import Percentage from './Percentagebar';
 
 
 function Projectpage() {
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
+    const navigate = useNavigate(); 
 
     const handleShow = () => setShow(true);
-
-    // const navigate = useNavigate();
-    const info = JSON.parse(localStorage.getItem('token'));
-    const info1 = (Object.values(info)[0])
-
-  useEffect(()=> { 
-    fetch(`project/user/${info1}`, {
-        method: "get",
-      })
+    
+    let info1 = 0;
+    if(JSON.parse(localStorage.getItem('token')) === null ){
+      navigate('/') ; 
+    } else {
+      const info = JSON.parse(localStorage.getItem('token'));
+      let info1 = (Object.values(info)[0])
+      
+      useEffect(()=> { 
+        fetch(`project/user/${info1}`, {
+          method: "get",
+        })
         .then((response) => {
           if (!response.ok) {
             throw new Error('Bad status code from server.');
           } 
-     
+          
           console.log(response.status)
           return response.json();
         })
-      
+        
         .then((data) => {
-        setData(data);
+          setData(data);
         });
-  },[])
-
+        
+      },[])
+    }
+      
 
   async function deleteProject(id) {
     try {
@@ -52,38 +60,46 @@ function Projectpage() {
 
     return (
     <>
-        <div style={{ height:'center', alignItems:"center",justifyContent:"center", padding:"auto", fontFamily:"Zen Dots, cursive", fontSize:'65px', display:'flex', flexBasis:'100%', flexWrap:"wrap"}}>Project List</div>
-        <div style={{ paddingLeft:'20%', paddingRight:'20%', alignItems: 'center'}}>
+        <br />
+        <div style={{textAlign:'center',fontSize:'65px', fontFamily:"Zen Dots, cursive", position:'relative',  top: "35%", left: "35%", justifyContent:'center', width:'800px', border:'1px black dotted',backgroundColor:'#00203FFF', color:'#ADEFD1FF', width:'800px'}}>Project List</div>
+        <div>
           <InputProject />
-          <br />
-          
         </div>
-        <div style={{ padding: '100px', display:"flex"}}>
-            <div style={{ justifyContent:"center", textAlign:'center', fontFamily:"Zen Dots, cursive", fontSize:'15px', display:'flex', flexBasis:'100%', flexWrap:"wrap"}}>
+        <br />
+        <div style={{justifyContent:'center', alignContent:'center'}}>
+            <div style={{fontFamily:"Zen Dots, cursive", fontSize:'15px'}}>
               {data?.map((data) => (
-                <div style={{paddingBottom:"10px"}}>
-                  <Card style={{ width: '800px' , marginLeft:'10px'}}>
-                    <Card.Header>{data.title} </Card.Header>
+                <div style={{ paddingBottom:'50px', position:'relative',  top: "35%", left: "35%", justifyContent:'center', width:'800px'}}>
+        
+                  <Card>
+                    <Card.Header style={{backgroundColor:'#007BD7', color:'white'}}>{data.title} </Card.Header>
                     <ImCross style={{position:"absolute", top:"15px", right:"15px"}} onClick={() => deleteProject(data.id)}/>
                     <Card.Body>
                         <Card.Text>
+                            <div key={data.id}>
+                              <p style={{textAlign:'center'}}>Project Progress: </p>
+                                    <Percentage pid={data.id} />
+                            </div>
                           <hr />
                           <div style={{textAlign:"left", padding:"5px"}}>
                             Desciption :  <EditProject pid={data.id}/><br />
                           </div>
-                          <div style={{textAlign:"center"}}>
+                          <div>
                             {data.description}
                           </div>
                           <hr />
                           <Container>
-                            <InputTodo project_id={data.id} project_name={data.title}/>
-                            <ProjectTodos pid={data.id}/>
+                            <div >
+                              <InputTodo project_id={data.id} project_name={data.title}/>
+                              <ProjectTodos pid={data.id} piid={data.item_id}/>
+                            </div>
             
                           </Container>
                         </Card.Text>
                         <Card.Footer>
-                          <small>{data.published_date}</small>
-                          <small>{data.modified_at}</small>
+                          <div style={{textAlign:'center'}}>
+                            <small>{data.modified_at}</small>
+                          </div>
                         </Card.Footer>
 
                       </Card.Body>

@@ -4,7 +4,7 @@ import { ProgressBar } from "react-bootstrap";
 import Percentage from "./Percentagebar";
 import EditProject from "./EditProject";
 
-const ProjectTodos = ({pid}) => {
+const ProjectTodos = ({pid, piid}) => {
   const [todos, setTodos] = useState([]);
   const [checked, setChecked] = useState('');
   const [percentage, setPercentage] = useState(0)
@@ -71,11 +71,12 @@ useEffect(() => {
 return (
     <Fragment>
       {" "}
-      <div>
-        <div style={{padding:"30px"}}>
-          Project Progress: 
-                <Percentage now={40}/>
-        </div>
+      <div >
+        {/* <div style={{paddingTop:'30px'}}>
+          
+          <p style={{textAlign:'center'}}>Project Progress: </p>
+                <Percentage project_id={project_id} />
+        </div> */}
             <table className="table mt-5" style={{border:"1px grey dotted"}}>
               <thead className="thead-dark">
                 <tr style={{textAlign:"center"}}>
@@ -87,7 +88,7 @@ return (
                 </tr>
               </thead>
               <tbody>
-          {todos.map((todo) => (
+          {todos?.map((todo) => (
             <tr key={todo.todo_id} style={todo.completed === true ? {textAlign:"center", backgroundColor:"green", color:"white", textDecoration: 'line-through'}: {textAlign:'center'}}>
               <td>{todo.name}</td> 
               <td>{todo.description}</td>

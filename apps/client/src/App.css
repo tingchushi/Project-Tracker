@@ -85,3 +85,21 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+body {
+  background-image: url("paper.gif");
+  background-color: #cccccc;
+  
+ }
+
+ body, html {
+  height: 100vh;
+  margin: 0;
+  background-image: url("https://c1.wallpaperflare.com/path/994/319/820/wall-poster-fly-posting-peeling-eee99de8a86e218f3d67f90fb43febbe.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: fixed ;
+  overflow-x: hidden;
+  
+}
+

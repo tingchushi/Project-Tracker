@@ -6,7 +6,12 @@ function Mainpage() {
   const [errorCode, setErrorCode] = useState("Wrong Username/Passowrd!!!")
   const [data, setData] = useState([])
   const navigate = useNavigate();
-
+  
+  const info = JSON.parse(localStorage.getItem('token'));
+  const info1 = (Object.values(info)[0])
+  if(JSON.parse(localStorage.getItem('token')) === null ){
+    navigate('/') ; 
+  } 
   useEffect(()=>{
     fetch('api/status', {
       method: "GET",

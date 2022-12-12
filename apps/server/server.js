@@ -12,12 +12,13 @@ app.use(cors());
 app.use(express.json()); // req.body
 
 app.use("/project", require("./routes/projectRoute"));
+app.use("/item", require("./routes/itemRoute"));
 app.use('/user', require('./routes/auth'))
 
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client/build/index.html"));
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is starting on port ${PORT}🚀`);

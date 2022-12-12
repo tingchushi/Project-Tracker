@@ -14,7 +14,9 @@ const  {
     projectDelete,
     itemQueryByProject,
     projectById, 
-    projectUpdate
+    projectUpdate,
+    userByProject,
+    projectProgress
 } = require('../controllers/projectDetails');
 
 router.get('/itemStatus', itemStatus)
@@ -27,15 +29,15 @@ router.put('/itemUpdate/:id', itemUpdate)
 
 router.delete('/itemDelete/:id', itemDelete)
 
-router.get('/status', projectStatus)
-
 router.put('/itemcompleted', itemCompleted)
+
+router.get('/status', projectStatus)
 
 router.get('/query/:id', projectQuery)
 
 router.get('/all', projectAll)
 
-router.post('/add', projectAdd)
+router.post('/add/:id', projectAdd)
 
 router.delete('/delete/:id', projectDelete)
 
@@ -44,6 +46,10 @@ router.get('/item/:id', itemQueryByProject)
 router.get('/user/:id', projectById)
 
 router.put('/update/:id', projectUpdate)
+
+// router.get('/participant/:id', userByProject)
+
+router.get('/progress/:id', projectProgress)
 
 // router.get('/secret', [isTokenValid], verifyToken)
 

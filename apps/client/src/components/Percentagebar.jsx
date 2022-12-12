@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { ProgressBar } from "react-bootstrap";
+import CircularProgress from '@mui/material/CircularProgress';
 
-const Percentage = ({project_id}) => {
+const Percentage = ({pid}) => {
   const [data, setData] = useState([])
   
   useEffect(()=>{
-    fetch(`project/item/${project_id}`, {
+    fetch(`project/item/${pid}`, {
       method: "get",
     })
       .then(res => res.json())
@@ -13,28 +14,29 @@ const Percentage = ({project_id}) => {
         setData(data)
       });
   },[])
-console.log(project_id)
+// console.log(project_id)
 console.log(data)
-
-const arrResult = [];
-const countryName = [];
+const completedCount = [];
+const completedNumerator = [];
 
 data.forEach(function(value, index) {
-arrResult[index] = value;
+completedCount[index] = value;
 });
-console.log(arrResult)
+console.log(completedCount)
 
-for (var key in arrResult){
-    countryName.push(arrResult[key].completd);
+for (var key in completedCount){
+    completedNumerator.push(completedCount[key].completed);
   }
 
-console.log(countryName)
+const numerator = completedNumerator.filter(x => x==true).length
 
-
+const percentage = (numerator * 100 / completedNumerator.length).toFixed(0)
 
 return (
     <Fragment>
-        <ProgressBar />
+        {/* <CircularProgress variant="determinate" value={percentage == NaN ? 0 : percentage} /> */}
+        <ProgressBar now={percentage == NaN ? 0 : percentage} />
+        <p style={{textAlign:'center', padding:'10px'}}>{isNaN(percentage) ? 0.00 : percentage}% Completed</p>
     </Fragment>
   );
 };

@@ -57,7 +57,7 @@ const EditProject = ({pid}) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title">Edit Action</h4>
+              <h4 className="modal-title">Edit Project</h4>
               <button
                 type="button"
                 className="close"

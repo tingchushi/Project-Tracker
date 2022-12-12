@@ -1,13 +1,21 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { MDBContainer, MDBInput, MDBCheckbox, MDBBtn,MDBIcon, MDBRow, MDBCol} from 'mdb-react-ui-kit';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import { useNavigate } from "react-router-dom";
 
 const InputTodo = ({project_id, project_name}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   // const [project, setProject] = useState("");
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
+  const info = JSON.parse(localStorage.getItem('token'));
+  const info1 = (Object.values(info)[0])
+  if(JSON.parse(localStorage.getItem('token')) === null ){
+    navigate('/') ; 
+  } 
+  
   useEffect(()=>{
     fetch("project/status", {
       method: "get",
@@ -39,10 +47,11 @@ const InputTodo = ({project_id, project_name}) => {
   return (
     <div style={{height:'center', alignItems:"center",justifyContent:"center"}}>
       <div>
-        <h1 style={{textAlign:"left", fontFamily:"Zen Dots, cursive", fontSize:"15px"}}>
+        <h1 style={{textAlign:"center", fontFamily:"Zen Dots, cursive", fontSize:"15px"}}>
             Input Action:&nbsp;&nbsp;&nbsp;&nbsp;
           </h1>
       </div>
+      <div style={{paddingLeft:'70px'}}>  
       <form className="d-flex" onSubmit={onSubmitForm}>
           <MDBInput
           label="Action"
@@ -65,7 +74,7 @@ const InputTodo = ({project_id, project_name}) => {
         <MDBInput
           style={{textAlign:"center"}}
           label='Project ID'
-          type="text"
+          type="hidden"
           placeholder={project_name}
           className="form-control"
           name="project_id"
@@ -78,6 +87,7 @@ const InputTodo = ({project_id, project_name}) => {
       
       </form>
     </div>
+  </div>
   );
 };
 

@@ -8,10 +8,14 @@ import Dashboard from '../src/components/Dashboard';
 import Projectpage from "./components/Projectpage";
 
 function App() {
-  const [selectedProject, setSelectedProject] = useState('')
-  console.log(selectedProject)
+
   return (  
-    <div>
+    <div style={{
+      // backgroundImage: `url("https://c1.wallpaperflare.com/path/994/319/820/wall-poster-fly-posting-peeling-eee99de8a86e218f3d67f90fb43febbe.jpg")`,
+      // backgroundRepeat: 'no-repeat',
+      // backgroundSize: 'cover',
+    }}>
+    
     <BrowserRouter>
      <Routes>
       <Route path="/" element={<Layout />}>
@@ -20,11 +24,12 @@ function App() {
         <Route path="/signup" element={<Registration />} />
         <Route path='/dashboard' element={<Dashboard />} /> 
         <Route path='/main' element={<Projectpage />} />
-        <Route path="/*" element={<Layout />} />
+        <Route path="/*" element={<Login />} />
       </Route>
      </Routes>
     </BrowserRouter>
 
+  
     </div>
   );
 }

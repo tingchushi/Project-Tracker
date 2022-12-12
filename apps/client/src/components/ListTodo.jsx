@@ -5,6 +5,12 @@ const ListTodos = ({}) => {
   const [todos, setTodos] = useState([]);
   const [checked, setChecked] = useState('');
 
+  const info = JSON.parse(localStorage.getItem('token'));
+  const info1 = (Object.values(info)[0])
+  if(JSON.parse(localStorage.getItem('token')) === null ){
+    navigate('/') ; 
+  } 
+  
 const handleCheck = async(event, todo_id) => {
     event.preventDefault();
     console.log(event.target.value)

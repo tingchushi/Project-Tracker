@@ -18,18 +18,18 @@ function Registration () {
     const [date, setDate] = useState(new Date());
     const navigate = useNavigate();
 
-    useEffect(() => {
-    validatePassword();
-    }, [state]);
+useEffect(() => {
+  validatePassword();
+  }, [state]);
 
-    const handleChange = (e) => {
+const handleChange = (e) => {
     const { id, value } = e.target;
     setState((prevState) => ({
         ...prevState,
         [id]: value
     }));
 
-  function checkPasswordValidation(value) {
+function checkPasswordValidation(value) {
     const isWhitespace = /^(?=.*\s)/;
     if (isWhitespace.test(value)) {
     //   return "Password must not contain Whitespaces.";
@@ -123,8 +123,6 @@ const handleSubmit = (event) => {
     });
 };
 
-
-
 function SubmitButton(){
   if (username && email && state.cPassword && state.password && dob){
     if(state.cPassword === state.password){
@@ -138,9 +136,9 @@ function SubmitButton(){
 };
 
     return (
-    <div style={{ display: 'flex', paddingLeft:'25%', alignItems: 'center', height: '100vh'}}>
-        <div style={{padding: '50px'}}>
-            <p style={{textAlign:'center', fontFamily:"Zen Dots, cursive", fontSize:'40px'}}>Sign In</p>
+      <div style={{ paddingLeft:'150px', display: 'flex',alignItems: 'center', paddingTop:'100px', backgroundColor:'white', justifyContent:'center'}}>
+        <div style={{padding: '150px', width:'100%'}}>
+            <p style={{textAlign:'center', width:'100%', paddingTop:'10px', fontFamily:"Zen Dots, cursive", fontSize:'40px'}}>Sign In</p>
         <form method="post" onSubmit={handleSubmit}>
             <MDBContainer>
                 <MDBInput wrapperClass='mb-4' label='Username' name='username' id='username' type='text' onChange={ e => setUsername(e.target.value)}/>
@@ -163,9 +161,10 @@ function SubmitButton(){
 
             </MDBContainer>
         </form>
+        <p style={{textAlign:'center'}}>Already a member? <a href="/">Login here</a></p>
         </div>
-        <div>
-        <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp' width={"100%"} height={"100%"} />
+        <div style={{width:"100%", left:'0px'}}>
+        <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp' />
         </div>
      </div>
   )
