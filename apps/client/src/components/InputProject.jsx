@@ -27,8 +27,6 @@ const InputTodo = () => {
       });
   },[])
 
-  // console.log(data)
-
   const onSubmitForm = async (e) => {
     e.preventDefault();
     
@@ -39,6 +37,27 @@ const InputTodo = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+      })
+      .then((response) => {
+        if (!response.ok) {
+          alert("Project Existed")
+  
+          throw new Error('Bad status code from server.');
+        } 
+          // if (response.status !==204){
+  
+        console.log(response.status)
+        return response.json();
+      })
+    
+      .then((data) => {
+        // if (data.msg) {
+        //   setMsg(data.msg);
+          
+        // } else {
+        //   navigate("/");
+        // }
+        console.log(data)
       });
 
       window.location = "/main";
@@ -49,10 +68,10 @@ const InputTodo = () => {
 
   return (
     <div style={{height:'center', alignItems:"center",justifyContent:"center",}}>
-      <h1 className="text-center my-5" style={{justifyContent:"center", fontFamily:"Zen Dots, cursive", position:'relative',  top: "35%", left: "35%", justifyContent:'center',border:'1px black dotted',backgroundColor:'#00203FFF', color:'#ADEFD1FF', width:'800px'}}>Create New Project</h1>
+      <h1 className="text-center my-5" style={{fontFamily:"Zen Dots, cursive", position:'relative',  top: "35%", left: "35%", justifyContent:'center',border:'1px black dotted',backgroundColor:'#00203FFF', color:'#ADEFD1FF', width:'800px'}}>Create New Project</h1>
       <div style={{textAlign:"left", fontFamily:"Zen Dots, cursive", fontSize:"15px"}}>
 
-      <form className="d-flex" style={{position:'relative',  top: "35%", left: "35%", justifyContent:'center', width:'800px',justifyContent:'center', alignContent:'center'}} onSubmit={onSubmitForm}>
+      <form className="d-flex" style={{position:'relative',  top: "35%", left: "35%", width:'800px',justifyContent:'center', alignContent:'center'}} onSubmit={onSubmitForm}>
         <MDBInput
           label="Project Name"
           type="text"

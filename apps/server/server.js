@@ -10,9 +10,10 @@ const PORT = process.env.PORT || 3000;
 // middleware
 app.use(cors());
 app.use(express.json()); // req.body
+const  {isTokenValid} = require('./controllers/userLogin');
 
 app.use("/project", require("./routes/projectRoute"));
-app.use("/item", require("./routes/itemRoute"));
+app.use("/item", isTokenValid,require("./routes/itemRoute"));
 app.use('/user', require('./routes/auth'))
 
 

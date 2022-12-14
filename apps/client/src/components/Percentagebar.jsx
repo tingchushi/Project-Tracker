@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { ProgressBar } from "react-bootstrap";
-import CircularProgress from '@mui/material/CircularProgress';
 
 const Percentage = ({pid}) => {
   const [data, setData] = useState([])
@@ -14,8 +13,7 @@ const Percentage = ({pid}) => {
         setData(data)
       });
   },[])
-// console.log(project_id)
-console.log(data)
+
 const completedCount = [];
 const completedNumerator = [];
 
@@ -34,8 +32,7 @@ const percentage = (numerator * 100 / completedNumerator.length).toFixed(0)
 
 return (
     <Fragment>
-        {/* <CircularProgress variant="determinate" value={percentage == NaN ? 0 : percentage} /> */}
-        <ProgressBar now={percentage == NaN ? 0 : percentage} />
+        <ProgressBar now={!percentage ? 0 : percentage} />
         <p style={{textAlign:'center', padding:'10px'}}>{isNaN(percentage) ? 0.00 : percentage}% Completed</p>
     </Fragment>
   );

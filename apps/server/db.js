@@ -9,7 +9,9 @@ require("dotenv").config();
 //   database: process.env.PG_DATABASE,
 // }
 
-const devConfig = `postgresql://tingchushi:UMCi0505@localhost:5432/PT`;
+// const devConfig = `postgresql://tingchushi:UMCi0505@localhost:5432/PT`;
+const devConfig = `postgres://pjriplfh:ql7K1eNAfrRkFHVECldqjwdW588GxSLv@tiny.db.elephantsql.com/pjriplfh`;
+
 
 const proConfig = process.env.DATABASE_URL; // heroku addons
 

@@ -21,7 +21,7 @@ const handleCheck = async(todo_id) => {
     }
     
     let completed = updatedList.toString();
-    console.log(completed)
+    // console.log(completed)
     if(completed === ''){
       completed = false;
       console.log(completed)

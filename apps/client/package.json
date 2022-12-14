@@ -22,6 +22,7 @@
     "cdbreact": "^1.5.3",
     "http-proxy-middleware": "^2.0.6",
     "mdb-react-ui-kit": "^5.0.0",
+    "next-link": "^2.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-circular-progressbar": "^2.1.0",
@@ -30,8 +31,10 @@
     "react-icons": "^4.7.1",
     "react-password-strength-bar": "^0.4.1",
     "react-router-dom": "^6.4.5",
+    "react-toast-notifications": "^2.5.1",
     "react-toastify": "^9.1.1",
-    "reactjs-popup": "^2.0.5"
+    "reactjs-popup": "^2.0.5",
+    "recharts": "^2.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

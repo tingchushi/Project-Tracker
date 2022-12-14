@@ -34,9 +34,12 @@ const userLogin =  async (req, res) => {
       const refresh = jwt.sign(payload, process.env.SECRET, { expiresIn: "2days" });
     
       const decoded = jwt.verify(token, process.env.SECRET);
-    
+      res.cookie('jwt', refresh, { httpOnly: true, 
+        sameSite: 'None', secure: true, 
+        maxAge: 24 * 60 * 60 * 1000 });
+
       // res.json({ token, refresh });
-      res.json({"token": user.rows[0].sn})
+      res.json({"token": user.rows[0].sn, "jwt": refresh})
 
   } catch (err) {
     console.error(err.message);
@@ -48,7 +51,10 @@ const userLogin =  async (req, res) => {
 
 const isTokenValid = (req, res, next) => {
   const authorization = req.get("authorization");
-  const token = authorization.split(" ")[1];
+  let token = 0
+  if (!authorization){
+    const token = authorization.split(" ")[1];
+  } 
 
   try {
     const decoded = jwt.verify(token, process.env.SECRET);

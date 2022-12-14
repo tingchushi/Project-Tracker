@@ -16,8 +16,11 @@ const  {
     projectById, 
     projectUpdate,
     userByProject,
-    projectProgress
+    projectProgress,
+    projectOverall
 } = require('../controllers/projectDetails');
+
+const  { isTokenValid } = require('../controllers/userLogin.js')
 
 router.get('/itemStatus', itemStatus)
 
@@ -47,9 +50,11 @@ router.get('/user/:id', projectById)
 
 router.put('/update/:id', projectUpdate)
 
-// router.get('/participant/:id', userByProject)
+router.get('/participant/:id', userByProject)
 
 router.get('/progress/:id', projectProgress)
+
+router.get('/overall/:id', projectOverall)
 
 // router.get('/secret', [isTokenValid], verifyToken)
 

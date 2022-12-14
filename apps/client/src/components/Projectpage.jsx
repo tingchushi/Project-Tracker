@@ -30,7 +30,8 @@ function Projectpage() {
         })
         .then((response) => {
           if (!response.ok) {
-            throw new Error('Bad status code from server.');
+            throw new Error('Bad status code from server.')
+            // navigate('/')
           } 
           
           console.log(response.status)
@@ -61,7 +62,7 @@ function Projectpage() {
     return (
     <>
         <br />
-        <div style={{textAlign:'center',fontSize:'65px', fontFamily:"Zen Dots, cursive", position:'relative',  top: "35%", left: "35%", justifyContent:'center', width:'800px', border:'1px black dotted',backgroundColor:'#00203FFF', color:'#ADEFD1FF', width:'800px'}}>Project List</div>
+        <div style={{textAlign:'center',fontSize:'65px', fontFamily:"Zen Dots, cursive", position:'relative',  top: "35%", left: "35%", justifyContent:'center', border:'1px black dotted',backgroundColor:'#00203FFF', color:'#ADEFD1FF', width:'800px'}}>Project List</div>
         <div>
           <InputProject />
         </div>
@@ -69,7 +70,7 @@ function Projectpage() {
         <div style={{justifyContent:'center', alignContent:'center'}}>
             <div style={{fontFamily:"Zen Dots, cursive", fontSize:'15px'}}>
               {data?.map((data) => (
-                <div style={{ paddingBottom:'50px', position:'relative',  top: "35%", left: "35%", justifyContent:'center', width:'800px'}}>
+                <div style={{ paddingBottom:'50px', position:'relative',  top: "35%", left: "35%", width:'800px'}}>
         
                   <Card>
                     <Card.Header style={{backgroundColor:'#007BD7', color:'white'}}>{data.title} </Card.Header>
@@ -88,6 +89,7 @@ function Projectpage() {
                             {data.description}
                           </div>
                           <hr />
+                
                           <Container>
                             <div >
                               <InputTodo project_id={data.id} project_name={data.title}/>
@@ -98,7 +100,7 @@ function Projectpage() {
                         </Card.Text>
                         <Card.Footer>
                           <div style={{textAlign:'center'}}>
-                            <small>{data.modified_at}</small>
+                            <small>{new Date(data.modified_at).toDateString()}</small>
                           </div>
                         </Card.Footer>
 

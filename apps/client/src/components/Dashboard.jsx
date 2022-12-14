@@ -7,11 +7,14 @@ function Dashboard({selectedProject}) {
 
     return (
     <>
-    <div style={{ paddingLeft:'20%', paddingRight:'20%', alignItems: 'center'}}>
+    <div style={{ paddingBottom:'50px', position:'relative',left:'35%',  top: "35%",  justifyContent:'center', width:'800px'}}>
+      
+    <div style={{ paddingBottom:'50px', position:'relative',left:'35%',  top: "35%",  justifyContent:'center', width:'800px'}}>
           <InputTodo />
     </div>
-    <div style={{ paddingLeft:'20%', paddingRight:'20%', alignItems: 'center'}}>
+    <div style={{ paddingBottom:'50px', position:'relative',  top: "35%", left:'35%', justifyContent:'center', width:'800px', backgroundColor:'white'}}>
           <ListTodos />
+    </div>
     </div>
     </>
   )

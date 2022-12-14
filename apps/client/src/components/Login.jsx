@@ -65,15 +65,15 @@ function Login() {
     }
 
   return (
-    <div style={{ paddingLeft:'150px', paddingTop:'173px', display: 'flex', alignItems: 'center', height: 'auto', width: '100%'}}>
-        <div style={{padding: '150px', width:'100%', backgroundColor:'white'}}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',height: '100vh', backgroundColor: 'rgba(255, 255, 255, 0.90)'}}>
+      <div style={{ paddingLeft:'150px', display: 'flex',alignItems: 'center', paddingTop:'10px'}}>
+        <div style={{padding: '150px', width:'100%'}}>
             <p style={{textAlign:'center', width:'100%', paddingTop:'10px', fontFamily:"Zen Dots, cursive", fontSize:'40px'}}>Login</p>
         <form method="post" onSubmit={handleSubmit}>
             <MDBContainer>
                 <MDBInput wrapperClass='mb-4' label='Email address' name='email' id='email' type='email'/>
                 <MDBInput wrapperClass='mb-4' label='Password' name='password' id='password' type='password'/>
-                <div className="d-flex justify-content-between mx-3 mb-4">
-                </div>
+    
                 <MDBBtn className="mb-4"style={{width:"100%"}} onClick={() => addToast(exampleToast)}>Sign In</MDBBtn>
                 <CToaster ref={toaster} push={toast} placement="top-end" />
               
@@ -83,9 +83,10 @@ function Login() {
             </MDBContainer>
         </form>
         </div>
-        <div style={{width:"100%", height:'100%', left:'0px',backgroundColor:'white'}}>
+        <div style={{width:"100%", height:'100%', left:'0px'}}>
         <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp'  />
         </div>
+     </div>
      </div>
   )
 }

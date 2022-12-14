@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBInput, MDBCheckbox, MDBBtn,MDBIcon, MDBRow, MDBCol} from 'mdb-react-ui-kit';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import PasswordStrengthBar from 'react-password-strength-bar';
-import { ToastContainer, toast } from 'react-toastify';
 import "react-datepicker/dist/react-datepicker.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { useToasts } from "react-toast-notifications";
 
 
 function Registration () {
@@ -15,7 +16,6 @@ function Registration () {
     const [email, setEmail] = useState('');
     const [msg, setMsg] = useState(' ')
     const [passVal, setPassVal] = useState(' ')
-    const [date, setDate] = useState(new Date());
     const navigate = useNavigate();
 
 useEffect(() => {
@@ -101,14 +101,12 @@ const handleSubmit = (event) => {
   })
     .then((response) => {
       if (!response.ok) {
+        alert("Invalid Information")
+
         throw new Error('Bad status code from server.');
       } 
-      if (response.status !== 200 ){
-        if (response.status !==204){
-          alert("Invalid Information")
-        } 
-        setMsg('Username/Email Existed')
-      }
+        // if (response.status !==204){
+
       console.log(response.status)
       return response.json();
     })
@@ -126,7 +124,7 @@ const handleSubmit = (event) => {
 function SubmitButton(){
   if (username && email && state.cPassword && state.password && dob){
     if(state.cPassword === state.password){
-      return <MDBBtn className="mb-4 px-5" color='dark' size='lg'>Register</MDBBtn>
+      return <MDBBtn className="mb-4 px-5" color='dark' size='lg' style={{width:"100%"}}>Register</MDBBtn>
     }else{
       return <MDBBtn disabled className="mb-4 px-5" color='dark' size='lg'style={{width:"100%"}}>Sign Up</MDBBtn>
     }
@@ -136,7 +134,9 @@ function SubmitButton(){
 };
 
     return (
-      <div style={{ paddingLeft:'150px', display: 'flex',alignItems: 'center', paddingTop:'100px', backgroundColor:'white', justifyContent:'center'}}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',height: '100vh', backgroundColor: 'rgba(255, 255, 255, 0.9)'}}>
+{/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',height: '100vh', backgroundColor: 'rgba(52, 52, 52, 0.8)'}}></div> */}
+      <div style={{ paddingLeft:'150px', display: 'flex',alignItems: 'center', paddingTop:'10px'}}>
         <div style={{padding: '150px', width:'100%'}}>
             <p style={{textAlign:'center', width:'100%', paddingTop:'10px', fontFamily:"Zen Dots, cursive", fontSize:'40px'}}>Sign In</p>
         <form method="post" onSubmit={handleSubmit}>
@@ -156,9 +156,9 @@ function SubmitButton(){
                     {passMatch ? "" : "Error: Passwords do not match"}
                     <br/>
                     {passVal}
+                    {msg}
                 </div>
                 <SubmitButton className="mb-4 px-5" color='dark' size='lg'style={{width:"100%"}}/>
-
             </MDBContainer>
         </form>
         <p style={{textAlign:'center'}}>Already a member? <a href="/">Login here</a></p>
@@ -167,6 +167,7 @@ function SubmitButton(){
         <img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp' />
         </div>
      </div>
+      </div>
   )
 }
 

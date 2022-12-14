@@ -108,21 +108,47 @@ const projectAll = async (req, res) => {
     }
     };
 
-const projectAdd = async (req, res) => {
-      try {
-        const { id } = req.params;
-        let { title, description } = req.body;
-        const newTodo = await pool.query(
-          "INSERT INTO project (title, description, user_id) VALUES($1, $2, $3) RETURNING *",
-          [title, description, id ]
-        );
+// const projectAdd = async (req, res) => {
+//       try {
+//         const { id } = req.params;
+//         let { title, description } = req.body;
+//         const newTodo = await pool.query(
+//           "INSERT INTO project (title, description, user_id) VALUES($1, $2, $3) RETURNING *",
+//           [title, description, id ]
+//         );
     
-        res.status(200).json(newTodo.rows[0]);
-        // res.status(200).json(newProject.rows[0]);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
+//         res.status(200).json(newTodo.rows[0]);
+//         // res.status(200).json(newProject.rows[0]);
+//       } catch (err) {
+//         console.error(err.message);
+//       }
+//     };
+const projectAdd = async (req, res) => {
+  try {
+    const { id } = req.params;
+    let { title, description } = req.body;
+    
+    const projectIsValid = await pool.query("SELECT * FROM project WHERE title = $1 AND user_id = $2", 
+    [title, id]
+    );
+
+    console.log(projectIsValid);
+
+    if (projectIsValid.rows.length !== 0) {
+      return res.status(401).json("Project Existed");
+    }
+
+    const newTodo = await pool.query(
+                "INSERT INTO project (title, description, user_id) VALUES($1, $2, $3) RETURNING *",
+                [title, description, id ]
+              );
+          
+              res.status(200).json(newTodo.rows[0]);
+              // res.status(200).json(newProject.rows[0]);
+            } catch (err) {
+              console.error(err.message);
+            }
+          };
 
 const projectDelete = async (req, res) => {
     try {
@@ -187,6 +213,18 @@ const projectUpdate = async (req, res) => {
 //   }
 // };
 
+const userByProject = async (req,res) => {
+  try {
+    const { id } = req.params;
+    const pId = await pool.query("SELECT * FROM project_pool INNER JOIN user_details on uid = sn WHERE pid = $1",[
+      id
+    ]);
+    res.status(200).json(pId.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
 const projectProgress = async (req,res)=>{
   try {
     const { id } = req.params;
@@ -199,6 +237,17 @@ const projectProgress = async (req,res)=>{
   }
 }
 
+const projectOverall = async (req,res)=>{
+  try {
+    const { id } = req.params;
+    const progress = await pool.query("SELECT * FROM todo INNER JOIN project ON project_id = id WHERE user_id = $1" ,[
+      id
+    ])
+    res.status(200).json(progress.rows);
+  }catch(err){
+    console.error(err.message)
+  }
+}
 
 
 
@@ -217,6 +266,7 @@ module.exports = {
     itemQueryByProject,
     projectById,
     projectUpdate,
-    // userByProject
-    projectProgress
+    userByProject,
+    projectProgress,
+    projectOverall
 }  
