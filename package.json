@@ -13,6 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/tingchushi/Project-Tracker.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -21,5 +22,9 @@
   "homepage": "https://github.com/tingchushi/Project-Tracker#readme",
   "devDependencies": {
     "turbo": "^1.6.3"
-  }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
