@@ -1,10 +1,10 @@
 # Project-Tracker
 Project Tracker Apps
 
-Motivation
+#Motivation
 Create an apps to record down all the project and monitor the project status and progress.
 
-User Journey
+#User Journey
 1. The new users are able to signup to the apps.
 2. User are able to login.
 3. Add in new project.
@@ -13,23 +13,23 @@ User Journey
 6. Trace the progress in percentage.
 7. Have a overview look.
 
-Technologies used
+#Technologies used
 Client
-cdbreact
-mdb-react-ui-kit
-React Toastify
-React-password-strength-bar
-React Hook Forms
+- cdbreact
+- mdb-react-ui-kit
+- React Toastify
+- React-password-strength-bar
+- React Hook Forms
 
 Server
-Postgresql
-Express
-Node.js
-pg
-dotenv
-bcrypt
+- Postgresql
+- Express
+- Node.js
+- pg
+- dotenv
+- bcrypt
 
-Improvements
+#Improvements
 Involve multiple user in a project and record the user who completed the tasks.
 
 
