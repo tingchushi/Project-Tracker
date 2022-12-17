@@ -16,11 +16,13 @@ Project Tracker Apps
 #Technologies used
 
 Client
+- Bootstrap
+- React Hook Forms
 - cdbreact
 - mdb-react-ui-kit
 - React Toastify
 - React-password-strength-bar
-- React Hook Forms
+
 
 Server
 - Postgresql
