@@ -31,8 +31,7 @@ Server
 - bcrypt
 
 #Improvements
-
-Involve multiple user in a project and record the user who completed the tasks.
+- Involve multiple user in a project and record the user who completed the tasks.
 
 
 
