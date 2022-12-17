@@ -35,9 +35,3 @@ Involve multiple user in a project and record the user who completed the tasks.
 
 
 
-
-
-Screenshots
-Improvements
-A customized checklist for other purposes such as training competency
-Specific role with different checklist for a patient
