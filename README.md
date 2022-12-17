@@ -2,7 +2,7 @@
 Project Tracker Apps
 
 #Motivation
-Create an apps to record down all the project and monitor the project status and progress.
+- Create an apps to record down all the project and monitor the project status and progress.
 
 #User Journey
 1. The new users are able to signup to the apps.
